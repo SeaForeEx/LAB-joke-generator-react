@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button } from 'bootstrap';
+import { Button } from 'react-bootstrap';
 import getJoke from '../api/jokeData';
 import Joker from '../components/Joker';
 
@@ -22,13 +22,18 @@ function Home() {
   };
 
   return (
-    <div>
-      <h1>Why So Serious?</h1>
+    <>
       <Joker joke={joke} btnText={btnText} />
-      {btnText === 'Get A Joke' || btnText === 'Get Another Joke'
-        ? <Button type="button" onClick={getAJoke}>{btnText}</Button>
-        : <Button type="button" onClick={() => setButton('Get Another Joke')}>{btnText}</Button>}
-    </div>
+      {btnText === 'Get A Joke' || btnText === 'Get A New Joke' ? (
+        <Button type="button" onClick={getAJoke}>
+          {btnText}
+        </Button>
+      ) : (
+        <Button type="button" onClick={() => setButton('Get A New Joke')}>
+          {btnText}
+        </Button>
+      )}
+    </>
   );
 }
 
